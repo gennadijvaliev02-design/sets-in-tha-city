@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETS IN THA CITY — Every set has a story.</title>
+<meta name="description" content="A nail culture and storytelling series from New York City. Explore the episodes, see the details, tell your story.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FFF8EF;
+    --ink:#171717;
+    --pink:#F64091;
+    --lime:#CDFA52;
+    --ink-soft:#3d3a36;
+    --mute:#6b6660;
+    --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+    --sans:"Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+    --header-h:64px;
+    --pad:clamp(16px, 4vw, 48px);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-padding-top:calc(var(--header-h) + 16px)}
+  @media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+  html,body{overflow-x:clip}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  [hidden]{display:none !important}
+  :focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:2px}
+  .skip-link{
+    position:absolute;left:16px;top:-60px;z-index:200;
+    background:var(--ink);color:var(--ivory);padding:12px 18px;
+    text-decoration:none;font-size:.85rem;border-radius:0 0 8px 8px;
+  }
+  .skip-link:focus{top:0}
+
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    height:var(--header-h);
+    padding:0 var(--pad);
+    background:var(--ivory);
+    border-bottom:2px solid var(--ink);
+  }
+  .wordmark{
+    font-family:var(--serif);font-weight:900;
+    font-size:1.02rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;white-space:nowrap;
+  }
+  .wordmark .dot{color:var(--pink)}
+  .main-nav{display:flex;align-items:center;gap:clamp(14px,2.5vw,32px)}
+  .main-nav ul{display:flex;gap:clamp(14px,2.5vw,32px);list-style:none;margin:0;padding:0}
+  .main-nav ul a{
+    display:inline-flex;align-items:center;min-height:44px;
+    font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;
+  }
+  .main-nav ul a:hover{border-bottom-color:var(--pink)}
+  .ig-pill{
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;
+    padding:0 16px;border:2px solid var(--ink);border-radius:999px;
+    font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;white-space:nowrap;
+  }
+  .ig-pill:hover{background:var(--ink);color:var(--ivory)}
+  .ig-pill svg{width:16px;height:16px;flex:none}
+  .menu-btn{
+    display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    width:48px;height:48px;flex:none;
+    background:none;border:2px solid var(--ink);border-radius:10px;cursor:pointer;
+  }
+  .menu-btn .bar{display:block;width:22px;height:2.5px;background:var(--ink);transition:transform .25s, opacity .25s}
+  body.menu-open .menu-btn .bar:nth-child(1){transform:translateY(4.25px) rotate(45deg)}
+  body.menu-open .menu-btn .bar:nth-child(2){transform:translateY(-4.25px) rotate(-45deg)}
+
+  @media (max-width: 860px){
+    .menu-btn{display:flex}
+    .main-nav{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--ivory);border-bottom:2px solid var(--ink);
+      flex-direction:column;align-items:stretch;gap:0;padding:6px 0 20px;
+    }
+    body.menu-open .main-nav{display:flex}
+    .main-nav ul{flex-direction:column;gap:0}
+    .main-nav ul a{
+      min-height:52px;padding:6px var(--pad);
+      font-family:var(--serif);font-size:1.5rem;font-weight:800;
+      letter-spacing:.02em;text-transform:none;border-bottom:0;
+    }
+    .main-nav ul a:hover{color:var(--pink)}
+    .ig-pill{margin:14px var(--pad) 0;justify-content:center}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:clamp(28px,5vh,56px) var(--pad) clamp(56px,9vh,110px)}
+  .hero-inner{
+    max-width:1280px;margin:0 auto;
+    display:grid;gap:clamp(28px,4vw,64px);
+    grid-template-areas:"copy media" "cta media";
+    grid-template-columns:minmax(0,1fr) minmax(0,.88fr);
+    align-items:center;
+  }
+  .hero-copy{grid-area:copy}
+  .hero-media{grid-area:media;position:relative;padding:14px 4px 0}
+  .cta-row{grid-area:cta;display:flex;flex-wrap:wrap;gap:12px}
+  @media (max-width: 900px){
+    .hero-inner{grid-template-areas:"copy" "media" "cta";grid-template-columns:minmax(0,1fr)}
+  }
+
+  .eyebrow{margin:0 0 18px;font-size:.72rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase}
+  .eyebrow-mark{display:inline-block;background:var(--lime);padding:7px 12px;transform:rotate(-1.5deg)}
+  h1{
+    margin:.1em 0 .35em;
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(3rem, 7.2vw + .8rem, 7rem);
+    line-height:.95;letter-spacing:-.02em;
+  }
+  h1 em{font-style:italic;color:var(--pink)}
+  .lede{margin:0;max-width:36ch;font-size:clamp(1rem,1.3vw,1.22rem);color:var(--ink-soft)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:52px;padding:0 30px;border-radius:999px;
+    border:2px solid var(--ink);
+    font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.02em;
+    text-decoration:none;cursor:pointer;
+    transition:transform .18s, box-shadow .18s, background .18s, color .18s, border-color .18s;
+  }
+  .btn-primary{background:var(--pink);border-color:var(--pink);color:#fff}
+  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--ivory)}
+  .btn-ivory{background:var(--ivory);border-color:var(--ivory);color:var(--ink)}
+  .btn-ivory:hover{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+  .btn-dark{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+  .btn-dark:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+
+  .hero-media-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  .photo{
+    margin:0;position:relative;background:#fff;padding:10px 10px 34px;
+    border:1px solid rgba(23,23,23,.18);
+    box-shadow:8px 8px 0 rgba(246,64,145,.16);
+  }
+  .photo .frame{overflow:hidden}
+  .photo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .photo-a{transform:rotate(-2.4deg)}
+  .photo-b{transform:rotate(2deg);margin-top:38px}
+  .photo::before{
+    content:"";position:absolute;top:-12px;left:50%;translate:-50% 0;
+    width:76px;height:22px;background:rgba(205,250,82,.9);transform:rotate(-4deg);
+  }
+  .photo-b::before{background:rgba(246,64,145,.75);transform:rotate(3deg)}
+  .photo figcaption{
+    position:absolute;bottom:9px;left:12px;
+    font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+  }
+  .skyline{grid-column:1 / -1;margin-top:6px}
+  .skyline svg{display:block;width:100%;height:52px}
+  .hero-caption{
+    grid-column:1 / -1;justify-self:start;margin:14px 0 0;
+    background:var(--ivory);border:2px solid var(--ink);
+    padding:9px 14px;transform:rotate(-1.2deg);
+    font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  }
+  .sticker-cam{
+    position:absolute;top:0;right:0;z-index:2;
+    background:var(--pink);color:#fff;
+    padding:10px 16px;border-radius:999px;transform:rotate(5deg);
+    font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-index{
+    margin:0 0 10px;font-size:.7rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  }
+  h2{
+    margin:0 0 14px;font-family:var(--serif);font-weight:900;
+    font-size:clamp(2.2rem, 4.6vw, 4rem);line-height:1.02;letter-spacing:-.015em;
+  }
+  .section-note{margin:0;max-width:56ch;font-size:.95rem}
+
+  /* ---------- EPISODES ---------- */
+  .episodes{background:var(--ink);color:var(--ivory);padding:clamp(60px,10vh,120px) var(--pad)}
+  .episodes .section-index{color:var(--lime)}
+  .episodes .section-note{color:#cfc9c0}
+  .episode-grid{
+    max-width:1280px;margin:clamp(28px,4vh,48px) auto 0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,28px);
+  }
+  @media (max-width: 900px){ .episode-grid{grid-template-columns:repeat(2,1fr)} }
+  .ep-card{
+    position:relative;display:flex;flex-direction:column;
+    background:#232120;border:1px solid #3b3835;
+    color:inherit;text-decoration:none;overflow:hidden;
+  }
+  .ep-card .thumb{display:block;overflow:hidden;aspect-ratio:3/4;background:#2c2a28}
+  .ep-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .ep-card:hover .thumb img,.ep-card:focus-visible .thumb img{transform:scale(1.045)}
+  .ep-label{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:13px 15px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .ep-label .go{color:var(--lime);white-space:nowrap}
+  .ep-card--featured{grid-column:span 2;border:2px solid var(--pink)}
+  .ep-card--featured .thumb{aspect-ratio:16/11}
+  .feat-flag{
+    position:absolute;top:14px;left:-6px;z-index:2;
+    background:var(--lime);color:var(--ink);
+    padding:8px 14px;transform:rotate(-3deg);
+    font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .ep-card--soon{background:transparent;border:2px dashed #57534e;justify-content:space-between}
+  .soon-num{
+    padding:26px 15px 0;font-family:var(--serif);font-weight:900;line-height:1;
+    font-size:clamp(4rem, 8vw, 6.5rem);color:transparent;-webkit-text-stroke:2px var(--pink);
+  }
+  .soon-text{padding:14px 15px 4px;color:#b8b2aa;font-size:.88rem;max-width:30ch}
+  @media (max-width: 640px){
+    .ep-card--featured{grid-column:span 2}
+    .ep-card--featured .thumb{aspect-ratio:4/3}
+  }
+
+  /* ---------- DETAILS / GALLERY ---------- */
+  .details{padding:clamp(60px,10vh,120px) var(--pad)}
+  .details .section-index{color:var(--pink)}
+  .details .section-note{color:var(--ink-soft)}
+  .gallery{
+    max-width:1280px;margin:clamp(28px,4vh,48px) auto 0;
+    display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,1.8vw,26px);
+  }
+  .g-item{
+    padding:0;border:0;background:none;cursor:pointer;text-align:left;
+    font:inherit;color:inherit;display:block;width:100%;
+  }
+  .g-frame{display:block;overflow:hidden;border:1px solid rgba(23,23,23,.22);background:#efe7da}
+  .g-frame img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+  .g-item:hover .g-frame img,.g-item:focus-visible .g-frame img{transform:scale(1.03)}
+  .g-cap{display:flex;gap:10px;margin-top:10px;font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+  .g-cap .g-no{color:var(--pink);font-weight:700;flex:none}
+  .g-a{grid-column:span 5;transform:rotate(-.6deg)}
+  .g-b{grid-column:span 7}
+  .g-c{grid-column:span 4}
+  .g-d{grid-column:span 4;margin-top:34px;transform:rotate(.5deg)}
+  .g-e{grid-column:span 4}
+  .g-a .g-frame{aspect-ratio:3/4}
+  .g-b .g-frame{aspect-ratio:4/3}
+  .g-c .g-frame,.g-d .g-frame,.g-e .g-frame{aspect-ratio:3/4}
+  @media (max-width: 760px){
+    .g-a,.g-b,.g-c,.g-d{grid-column:span 6;margin-top:0;transform:none}
+    .g-a .g-frame,.g-c .g-frame,.g-d .g-frame{aspect-ratio:3/4}
+    .g-b .g-frame{aspect-ratio:3/4}
+    .g-e{grid-column:span 12}
+    .g-e .g-frame{aspect-ratio:16/10}
+  }
+
+  /* ---------- STORY ---------- */
+  .story{background:var(--pink);color:#fff;padding:clamp(70px,12vh,150px) var(--pad);text-align:center}
+  .story .section-index{color:var(--ivory)}
+  .story h2{color:#fff}
+  .story-quote{
+    margin:0 auto 34px;max-width:36ch;
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:clamp(1.25rem, 2.6vw, 1.9rem);line-height:1.35;
+  }
+  .story-sub{margin:22px auto 0;max-width:46ch;font-size:.9rem;color:#ffe1ee}
+  .story-sub a{color:#fff;font-weight:600}
+
+  /* ---------- COLLAB ---------- */
+  .collab{background:var(--lime);color:var(--ink);padding:clamp(56px,9vh,110px) var(--pad);text-align:center}
+  .collab .section-index{color:var(--ink)}
+  .collab-lead{
+    margin:0 auto 30px;max-width:30ch;
+    font-family:var(--serif);font-style:italic;font-weight:700;
+    font-size:clamp(1.2rem, 2.4vw, 1.7rem);line-height:1.35;
+  }
+  .collab-note{margin:22px auto 0;max-width:52ch;font-size:.85rem;color:#3f4022}
+
+  /* ---------- FOOTER ---------- */
+  .site-footer{background:var(--ink);color:var(--ivory);padding:56px var(--pad) 44px;text-align:center}
+  .site-footer .wordmark{display:inline-block;color:var(--ivory);font-size:1.5rem}
+  .footer-tag{margin:10px 0 18px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--pink)}
+  .footer-ig{
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 8px;
+    color:var(--lime);font-size:.85rem;font-weight:600;letter-spacing:.08em;text-decoration:none;
+  }
+  .footer-ig:hover{text-decoration:underline}
+  .unofficial{
+    margin:30px auto 0;max-width:60ch;
+    font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8a857e;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(23,23,23,.95);
+    display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  .lightbox figure{margin:0;max-width:min(92vw, 1000px);text-align:center}
+  #lb-img{margin:0 auto;max-width:100%;max-height:76vh;width:auto;border:4px solid var(--ivory)}
+  #lb-cap{margin-top:14px;color:var(--ivory);font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .lb-btn{
+    position:fixed;display:flex;align-items:center;justify-content:center;
+    min-width:48px;min-height:48px;border-radius:50%;
+    border:2px solid var(--ivory);background:transparent;color:var(--ivory);
+    font-size:1.25rem;line-height:1;cursor:pointer;
+  }
+  .lb-btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+  .lb-close{top:14px;right:14px}
+  .lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:12px;top:50%;transform:translateY(-50%)}
+  @media (max-width: 640px){
+    .lb-prev{left:10px;top:auto;bottom:14px;transform:none}
+    .lb-next{right:10px;top:auto;bottom:14px;transform:none}
+    .lightbox figure{max-width:92vw}
+    #lb-img{max-height:66vh}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{transition:none !important;animation:none !important}
+  }
+
+/* Final responsive and accessibility refinements */
+.btn-primary,.btn-primary:hover,.btn-dark:hover,.sticker-cam{color:var(--ink)}
+.story,.story h2,.story .section-index,.story-sub,.story-sub a{color:var(--ink)}
+.details .section-index{color:#a9195b}
+.eyebrow,.section-index,.ig-pill,.hero-caption,.photo figcaption,.ep-label,.g-cap,.unofficial{font-size:.75rem}
+.main-nav ul a{font-size:.875rem;letter-spacing:.08em}
+.section-note,.story-sub,.collab-note{font-size:1rem}
+.hero{padding-top:40px}
+.hero-inner{row-gap:28px}
+h1{font-size:clamp(3.2rem,7vw,6.8rem);line-height:1.04}
+.photo .frame{display:block}
+.photo img{aspect-ratio:3/4.15}
+.hero-caption{margin-top:20px}
+.episode-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ep-card{min-width:0}
+.episode-cover{position:relative;display:block;overflow:hidden;aspect-ratio:234/300}
+.episode-cover img{position:absolute;width:302.991453%;max-width:none;height:auto;left:var(--crop-x);top:var(--crop-y)}
+.ep-label{flex-wrap:wrap;gap:4px;letter-spacing:.05em}
+.ep-label .go{white-space:normal}
+.gallery{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
+.g-a,.g-b,.g-c,.g-d{grid-column:auto;transform:none;margin-top:0;min-width:0}
+.g-b,.g-d{margin-top:44px}
+.g-a .g-frame,.g-b .g-frame,.g-c .g-frame,.g-d .g-frame{aspect-ratio:3/4.3}
+.g-d .g-frame img{object-position:50% 0%!important;width:108%;max-width:none;height:108%}
+.g-cap{letter-spacing:.025em;font-size:.875rem;color:var(--ink-soft)}
+.g-cap .g-no{color:#a9195b}
+.unofficial{color:#b8b2aa;letter-spacing:.1em}
+#lb-img{max-width:min(100%,calc(100vw - 48px))!important;object-fit:contain}
+@media(min-width:1400px){.episodes>p,.episodes>h2,.details>p,.details>h2{max-width:1280px;margin-left:auto;margin-right:auto}}
+@media(max-width:900px){
+ .hero-inner{grid-template-areas:"copy" "cta" "media";gap:24px}
+ .hero-copy{max-width:680px}
+ .hero-media{max-width:580px;width:100%;margin:10px auto 0}
+ .episode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .g-b,.g-d{margin-top:28px}
+}
+@media(max-width:480px){
+ .hero{padding-top:26px;padding-bottom:48px}
+ h1{font-size:clamp(2.65rem,11.5vw,3.7rem)}
+ .eyebrow{margin-bottom:14px}
+ .cta-row{gap:10px}
+ .btn{padding:0 18px;font-size:.875rem;min-height:48px}
+ .photo{padding:6px 6px 32px}
+ .photo figcaption{font-size:.65rem;left:7px;letter-spacing:0}
+ .hero-media-grid{gap:12px}
+ .hero-caption{font-size:.65rem;letter-spacing:.07em}
+ .sticker-cam{font-size:.7rem;padding:8px 12px}
+ .ep-label{padding:12px 10px;flex-direction:column;align-items:flex-start}
+ .g-cap{font-size:.8rem;gap:5px}
+ .wordmark{font-size:.9rem;letter-spacing:.03em}
+ .section-note{line-height:1.65}
+}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <a class="wordmark" href="#top">Sets in tha City<span class="dot">.</span></a>
+  <nav class="main-nav" id="main-nav" aria-label="Primary">
+    <ul>
+      <li><a href="#episodes">Episodes</a></li>
+      <li><a href="#details">The Details</a></li>
+      <li><a href="#story">Your Story</a></li>
+    </ul>
+    <a class="ig-pill" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg>
+      @setsinthacity
+    </a>
+  </nav>
+  <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+    <span class="bar"></span><span class="bar"></span>
+  </button>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-mark">Nails. Stories. NYC.</span></p>
+        <h1 id="hero-title">Every set<br><em>has a story.</em></h1>
+        <p class="lede">A closer look at the nails—and the people—that make the city.</p>
+      </div>
+
+      <div class="hero-media">
+        <span class="sticker-cam" aria-hidden="true">Nail cam ✶</span>
+        <div class="hero-media-grid">
+          <figure class="photo photo-a">
+            <span class="frame"><img data-asset="heroA" src="assets/pink.jpeg" alt="Long pink and yellow graphic nails with silver planet charms." fetchpriority="high"></span>
+            <figcaption>01 / Pink, turned up</figcaption>
+          </figure>
+          <figure class="photo photo-b">
+            <span class="frame"><img data-asset="heroB" src="assets/florals.jpeg" alt="Extra-long pastel nails decorated with flowers and colorful gems." fetchpriority="high"></span>
+            <figcaption>02 / In full bloom</figcaption>
+          </figure>
+          
+          <p class="hero-caption">Made for the city. Told through nails.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#episodes">Explore the episodes</a>
+        <a class="btn btn-ghost" href="#story">Tell your story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPISODES -->
+  <section class="episodes" id="episodes" aria-labelledby="episodes-title">
+    <p class="section-index">01 — The Series</p>
+    <h2 id="episodes-title">The Episodes</h2>
+    <p class="section-note">Nail stories, straight from the city. Explore selected episodes on Instagram.</p>
+    <div class="episode-grid" id="episode-grid"><a class="ep-card" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer" aria-label="Explore the series on Instagram — Episode 006 cover">
+ <span class="episode-cover" role="img" aria-label="Original Episode 006 thumbnail" style="--crop-x:-0.4273504273504274%;--crop-y:-91.33333333333333%"><img src="assets/series.jpeg" alt="" loading="lazy" aria-hidden="true"></span>
+ <span class="ep-label"><span>Episode 006</span><span class="go">Instagram ↗</span></span></a><a class="ep-card" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer" aria-label="Explore the series on Instagram — Episode 004 cover">
+ <span class="episode-cover" role="img" aria-label="Original Episode 004 thumbnail" style="--crop-x:-202.56410256410254%;--crop-y:-91.33333333333333%"><img src="assets/series.jpeg" alt="" loading="lazy" aria-hidden="true"></span>
+ <span class="ep-label"><span>Episode 004</span><span class="go">Instagram ↗</span></span></a><a class="ep-card" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer" aria-label="Explore the series on Instagram — Episode 003 cover">
+ <span class="episode-cover" role="img" aria-label="Original Episode 003 thumbnail" style="--crop-x:-101.7094017094017%;--crop-y:-211.66666666666666%"><img src="assets/series.jpeg" alt="" loading="lazy" aria-hidden="true"></span>
+ <span class="ep-label"><span>Episode 003</span><span class="go">Instagram ↗</span></span></a><a class="ep-card" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer" aria-label="Explore the series on Instagram — Episode 001 cover">
+ <span class="episode-cover" role="img" aria-label="Original Episode 001 thumbnail" style="--crop-x:-0.4273504273504274%;--crop-y:-352.0%"><img src="assets/series.jpeg" alt="" loading="lazy" aria-hidden="true"></span>
+ <span class="ep-label"><span>Episode 001</span><span class="go">Instagram ↗</span></span></a></div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="details" id="details" aria-labelledby="details-title">
+    <p class="section-index">02 — The Details</p>
+    <h2 id="details-title">The Details</h2>
+    <p class="section-note">A little sparkle. A lot of personality. Take a closer look.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- YOUR STORY -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <p class="section-index">03 — Your Story</p>
+    <h2 id="story-title">Your nails. Your story.</h2>
+    <p class="story-quote">“A fresh set, a signature color, a little piece of you. What’s the story behind yours?”</p>
+    <a class="btn btn-ivory" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer">Connect on Instagram</a>
+    <p class="story-sub">Find out how to share your story at <a href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer">@setsinthacity</a>.</p>
+  </section>
+
+  <!-- COLLAB -->
+  <section class="collab" id="collab" aria-labelledby="collab-title">
+    <p class="section-index">04 — Collaborations</p>
+    <h2 id="collab-title">Let’s create something</h2>
+    <p class="collab-lead">Have an idea that belongs in the city?</p>
+    <a class="btn btn-dark" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer">Start a conversation</a>
+    <p class="collab-note">For brands, artists and creatives with a story to tell.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span class="wordmark">Sets in tha City<span class="dot">.</span></span>
+  <p class="footer-tag">Every set has a story.</p>
+  <a class="footer-ig" href="https://www.instagram.com/setsinthacity/" target="_blank" rel="noopener noreferrer">Instagram: @setsinthacity</a>
+  <p class="unofficial">Unofficial website concept</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Close image viewer">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous image">←</button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next image">→</button>
+</div>
+
+<noscript><p style="text-align:center;padding:20px">Enable JavaScript to open the image gallery. You can still explore the episodes on Instagram.</p></noscript>
+
+<script>
+/* =========================================================
+   EDIT ME: all images & captions live in this one structure.
+   Drop your files into /assets with these names (or swap src).
+   ========================================================= */
+const IG_URL = "https://www.instagram.com/setsinthacity/";
+
+const ASSETS = {"heroA": {"src": "assets/pink.jpeg", "op": "50% 53%", "alt": "Long pink and yellow graphic nails with silver planet charms."}, "heroB": {"src": "assets/florals.jpeg", "op": "50% 55%", "alt": "Extra-long pastel nails decorated with flowers and colorful gems."}, "charms": {"src": "assets/charms.jpeg", "op": "50% 35%", "alt": "An open hand displaying long nails with colorful characters and fruit charms."}, "leopard": {"src": "assets/leopard.jpeg", "op": "50% 55%", "alt": "Shimmering silver nails with pink outlines and leopard-print tips."}};
+const GALLERY = [{"asset": "heroA", "cls": "g-a", "cap": "Pink, turned up."}, {"asset": "heroB", "cls": "g-b", "cap": "In full bloom."}, {"asset": "leopard", "cls": "g-c", "cap": "A wild little detail."}, {"asset": "charms", "cls": "g-d", "cap": "More is more."}];
+
+/* ---------- placeholder fallback (if a file is missing) ---------- */
+function placeholderSVG(){
+  const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'>" +
+    "<rect width='600' height='800' fill='#FFF8EF'/>" +
+    "<g stroke='#F64091' stroke-width='3' opacity='.35'>" +
+    "<line x1='0' y1='200' x2='600' y2='80'/><line x1='0' y1='420' x2='600' y2='300'/>" +
+    "<line x1='0' y1='640' x2='600' y2='520'/></g>" +
+    "<text x='300' y='392' font-family='Georgia,serif' font-size='34' fill='#171717' text-anchor='middle'>photo slot</text>" +
+    "<text x='300' y='430' font-family='sans-serif' font-size='16' fill='#6b6660' text-anchor='middle'>add file to /assets</text></svg>";
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+function wireFallback(img){
+  img.addEventListener("error", function(){
+    if (img.src.startsWith("data:image/svg+xml")) return;
+    img.src = placeholderSVG();
+  });
+}
+
+/* ---------- inject hero images ---------- */
+document.querySelectorAll("img[data-asset]").forEach(function(img){
+  const a = ASSETS[img.dataset.asset];
+  if (!a) return;
+  img.alt = a.alt;
+  img.style.objectPosition = a.op || "50% 50%";
+  wireFallback(img);
+  img.src = a.src;
+});
+
+/* ---------- render gallery ---------- */
+const gallery = document.getElementById("gallery");
+gallery.innerHTML = GALLERY.map(function(g, i){
+  const a = ASSETS[g.asset];
+  const no = "No. 0" + (i + 1);
+  return '<button type="button" class="g-item ' + g.cls + '" data-index="' + i + '" aria-label="Open image ' + (i+1) + ' of ' + GALLERY.length + ': ' + g.cap + '">' +
+    '<span class="g-frame"><img loading="lazy" decoding="async" src="' + a.src + '" alt="' + a.alt + '" style="object-position:' + (a.op || "50% 50%") + '"></span>' +
+    '<span class="g-cap"><span class="g-no">' + no + '</span><span>' + g.cap + '</span></span></button>';
+}).join("");
+gallery.querySelectorAll("img").forEach(wireFallback);
+
+/* ---------- mobile menu ---------- */
+const menuBtn = document.getElementById("menu-btn");
+function setMenu(open){
+  document.body.classList.toggle("menu-open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+menuBtn.addEventListener("click", function(){ setMenu(!document.body.classList.contains("menu-open")); });
+document.querySelectorAll("#main-nav a").forEach(function(a){
+  a.addEventListener("click", function(){ setMenu(false); });
+});
+window.addEventListener("resize", function(){ if (window.innerWidth > 860) setMenu(false); });
+
+/* ---------- lightbox ---------- */
+const lightbox = document.getElementById("lightbox");
+const lbImg  = document.getElementById("lb-img");
+const lbCap  = document.getElementById("lb-cap");
+const lbClose = document.getElementById("lb-close");
+const lbPrev = document.getElementById("lb-prev");
+const lbNext = document.getElementById("lb-next");
+let lbIndex = 0, lbLastFocus = null;
+
+function lbShow(i){
+  lbIndex = (i + GALLERY.length) % GALLERY.length;
+  const g = GALLERY[lbIndex], a = ASSETS[g.asset];
+  lbImg.style.objectPosition = a.op || "50% 50%";
+  lbImg.alt = a.alt;
+  lbImg.src = a.src;
+  lbCap.textContent = "No. 0" + (lbIndex + 1) + " / 0" + GALLERY.length + " — " + g.cap;
+}
+function lbOpen(i){
+  lbLastFocus = document.activeElement;
+  lbShow(i);
+  lightbox.hidden = false;
+  document.body.style.overflow = "hidden";
+  document.querySelector("main").inert = true;
+  document.querySelector("header").inert = true;
+  document.querySelector("footer").inert = true;
+  lbClose.focus();
+}
+function lbCloseFn(){
+  lightbox.hidden = true;
+  document.body.style.overflow = "";
+  document.querySelector("main").inert = false;
+  document.querySelector("header").inert = false;
+  document.querySelector("footer").inert = false;
+  if (lbLastFocus) lbLastFocus.focus();
+}
+/* never upscale small sources in the viewer */
+lbImg.addEventListener("load", function(){
+  if (lbImg.naturalWidth) lbImg.style.maxWidth = Math.min(lbImg.naturalWidth, 1000) + "px";
+});
+wireFallback(lbImg);
+
+gallery.addEventListener("click", function(e){
+  const btn = e.target.closest(".g-item");
+  if (btn) lbOpen(Number(btn.dataset.index));
+});
+lbClose.addEventListener("click", lbCloseFn);
+lbPrev.addEventListener("click", function(){ lbShow(lbIndex - 1); });
+lbNext.addEventListener("click", function(){ lbShow(lbIndex + 1); });
+lightbox.addEventListener("click", function(e){ if (e.target === lightbox) lbCloseFn(); });
+
+document.addEventListener("keydown", function(e){
+  if (!lightbox.hidden){
+    if (e.key === "Escape") lbCloseFn();
+    if (e.key === "ArrowLeft") lbShow(lbIndex - 1);
+    if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+    if (e.key === "Tab"){ /* keep focus inside the dialog */
+      const f = [lbClose, lbPrev, lbNext];
+      const idx = f.indexOf(document.activeElement);
+      if (e.shiftKey && (idx <= 0)){ e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && idx === f.length - 1){ e.preventDefault(); f[0].focus(); }
+    }
+  } else if (e.key === "Escape" && document.body.classList.contains("menu-open")){
+    setMenu(false); menuBtn.focus();
+  }
+});
+</script>
+</body>
+</html>
